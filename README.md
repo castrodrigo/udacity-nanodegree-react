@@ -1,4 +1,4 @@
-Udacity Nanodegree React
+# Udacity Nanodegree React
 
 Repo for all exercises of the React Nanodegree program from Udacity
 
