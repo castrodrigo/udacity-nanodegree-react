@@ -103,8 +103,8 @@ class App extends Component {
         <ol>
           {profiles.map(profile => (
             <li key={profile.userID}>
-              {users[profile.userID].name}'s favorite movie is
-              {movies[profile.favoriteMovieID].name}.
+              {`${users[profile.userID].name}'s favorite movie is
+              ${movies[profile.favoriteMovieID].name}.`}
             </li>
           ))}
         </ol>
