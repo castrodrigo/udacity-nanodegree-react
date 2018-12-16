@@ -25,7 +25,7 @@ class App extends Component {
         <h2>Create users for the game!</h2>
         <AddUser
           appendUser={this.appendUser}
-          checkUsername={this.isUserNameAvailable}
+          isUserNameAvailable={this.isUserNameAvailable}
         />
         <ListUsers users={this.state.users} />
       </div>

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class AddUser extends Component {
   state = {
     user: {
-      firstName: '',
-      lastName: '',
-      username: '',
+      firstName: "",
+      lastName: "",
+      username: ""
     },
-    userExists: false,
+    userExists: false
   };
 
   contactExists = currUsername => {
@@ -30,7 +30,7 @@ class AddUser extends Component {
     }
 
     this.setState(() => ({
-      userExists,
+      userExists
     }));
   };
 
@@ -41,14 +41,14 @@ class AddUser extends Component {
       ...currState,
       user: {
         ...currState.user,
-        [name]: value,
-      },
+        [name]: value
+      }
     }));
   };
 
   isDisabled = () => {
     const { firstName, lastName, username } = this.state.user;
-    return firstName === '' || lastName === '' || username === '';
+    return firstName === "" || lastName === "" || username === "";
   };
 
   render() {
@@ -86,7 +86,7 @@ class AddUser extends Component {
         {this.state.userExists ? (
           <p className="error">You cannot add a user that already exists.</p>
         ) : (
-          ''
+          ""
         )}
       </div>
     );
@@ -95,7 +95,7 @@ class AddUser extends Component {
 
 AddUser.propTypes = {
   onAddUser: PropTypes.func.isRequired,
-  users: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired
 };
 
 export default AddUser;

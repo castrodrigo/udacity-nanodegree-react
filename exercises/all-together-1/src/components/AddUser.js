@@ -1,50 +1,38 @@
 import React from "react";
 
 class AddUser extends React.Component {
+  initialUserState = {
+    name: "",
+    lastName: "",
+    userName: "",
+    totalGames: 0
+  };
+
   state = {
     user: {
-      name: "",
-      lastName: "",
-      userName: "",
-      totalGames: 0
+      ...this.initialUserState
     },
     error: false
   };
 
   onSubmit = event => {
     event.preventDefault();
-    if (this.props.checkUsername(this.state.user.userName)) {
+    if (this.props.isUserNameAvailable(this.state.user.userName)) {
       this.props.appendUser(this.state.user);
+      this.setState({ user: { ...this.initialUserState }, error: false });
     } else {
       this.setState({ error: true });
     }
   };
 
-  onChangeName = event => {
-    const name = event.target.value;
-    this.setState(prevState => {
-      const { user } = prevState;
-      user.name = name;
-      return { ...prevState, user };
-    });
-  };
-
-  onChangeLastName = event => {
-    const lastName = event.target.value;
-    this.setState(prevState => {
-      const { user } = prevState;
-      user.lastName = lastName;
-      return { ...prevState, user };
-    });
-  };
-
-  onChangeUserName = event => {
-    const userName = event.target.value;
-    this.setState(prevState => {
-      const { user } = prevState;
-      user.userName = userName;
-      return { ...prevState, user };
-    });
+  onInputChange = event => {
+    const { name, value } = event.target;
+    let currentUser = this.state.user;
+    currentUser = {
+      ...currentUser,
+      [name]: value
+    };
+    this.setState({ user: currentUser });
   };
 
   isDisabled = () => {
@@ -63,7 +51,7 @@ class AddUser extends React.Component {
             name="name"
             id="user-name"
             value={this.state.user.name}
-            onChange={this.onChangeName}
+            onChange={this.onInputChange}
           />
         </label>
         <label htmlFor="user-lastName">
@@ -73,7 +61,7 @@ class AddUser extends React.Component {
             name="lastName"
             id="user-lastName"
             value={this.state.user.lastName}
-            onChange={this.onChangeLastName}
+            onChange={this.onInputChange}
           />
         </label>
         <label htmlFor="user-userName">
@@ -83,10 +71,10 @@ class AddUser extends React.Component {
             name="userName"
             id="user-userName"
             value={this.state.user.userName}
-            onChange={this.onChangeUserName}
+            onChange={this.onInputChange}
           />
         </label>
-        <button disabled={this.isDisabled()}>Create new User</button>
+        <button disabled={this.isDisabled()}>Add User</button>
         {this.state.error && (
           <p className="error">
             There is already an user with the typed username

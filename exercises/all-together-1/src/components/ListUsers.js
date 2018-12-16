@@ -5,18 +5,14 @@ const ListUsers = ({ users }) => (
     <h2 className="users">Users</h2>
     <table>
       <thead>
-        <tr>
-          <th>Name</th>
-          <th>Last Name</th>
+        <tr key="header">
           <th>Username</th>
           <th>Total Games</th>
         </tr>
       </thead>
       <tbody>
         {users.map(item => (
-          <tr key={item.username}>
-            <td>{item.name}</td>
-            <td>{item.lastName}</td>
+          <tr key={item.userName}>
             <td>{item.userName}</td>
             <td>{item.totalGames}</td>
           </tr>
