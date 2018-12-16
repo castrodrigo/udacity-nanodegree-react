@@ -2,30 +2,53 @@ import React from "react";
 
 class AddUser extends React.Component {
   state = {
-    name: "",
-    lastName: "",
-    userName: "",
-    totalGames: 0
+    user: {
+      name: "",
+      lastName: "",
+      userName: "",
+      totalGames: 0
+    },
+    error: false
   };
 
   onSubmit = event => {
     event.preventDefault();
+    if (this.props.checkUsername(this.state.user.userName)) {
+      this.props.appendUser(this.state.user);
+    } else {
+      this.setState({ error: true });
+    }
   };
 
   onChangeName = event => {
-    this.setState({ name: event.target.value });
+    const name = event.target.value;
+    this.setState(prevState => {
+      const { user } = prevState;
+      user.name = name;
+      return { ...prevState, user };
+    });
   };
 
   onChangeLastName = event => {
-    this.setState({ lastName: event.target.value });
+    const lastName = event.target.value;
+    this.setState(prevState => {
+      const { user } = prevState;
+      user.lastName = lastName;
+      return { ...prevState, user };
+    });
   };
 
   onChangeUserName = event => {
-    this.setState({ userName: event.target.value });
+    const userName = event.target.value;
+    this.setState(prevState => {
+      const { user } = prevState;
+      user.userName = userName;
+      return { ...prevState, user };
+    });
   };
 
   isDisabled = () => {
-    const { name, userName } = this.state;
+    const { name, userName } = this.state.user;
     return name.length === 0 || userName.length === 0;
   };
 
@@ -39,7 +62,7 @@ class AddUser extends React.Component {
             type="text"
             name="name"
             id="user-name"
-            value={this.state.name}
+            value={this.state.user.name}
             onChange={this.onChangeName}
           />
         </label>
@@ -49,7 +72,7 @@ class AddUser extends React.Component {
             type="text"
             name="lastName"
             id="user-lastName"
-            value={this.state.lastName}
+            value={this.state.user.lastName}
             onChange={this.onChangeLastName}
           />
         </label>
@@ -59,11 +82,16 @@ class AddUser extends React.Component {
             type="text"
             name="userName"
             id="user-userName"
-            value={this.state.userName}
+            value={this.state.user.userName}
             onChange={this.onChangeUserName}
           />
         </label>
         <button disabled={this.isDisabled()}>Create new User</button>
+        {this.state.error && (
+          <p className="error">
+            There is already an user with the typed username
+          </p>
+        )}
       </form>
     );
   }

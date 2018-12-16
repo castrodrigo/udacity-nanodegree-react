@@ -23,7 +23,10 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <h2>Create users for the game!</h2>
-        <AddUser />
+        <AddUser
+          appendUser={this.appendUser}
+          checkUsername={this.isUserNameAvailable}
+        />
         <ListUsers users={this.state.users} />
       </div>
     );
