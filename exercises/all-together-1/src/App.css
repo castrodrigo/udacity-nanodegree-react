@@ -22,6 +22,32 @@
   font-size: large;
 }
 
+h2 {
+  margin-top: 40px;
+}
+
+label {
+  display: block;
+}
+
+label > span {
+  min-width: 100px;
+  display: inline-block;
+}
+
+table,
+th,
+td {
+  margin: 10px auto;
+  border: 1px solid #c7c7c7;
+}
+
+th,
+td {
+  min-width: 10%;
+  padding: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
