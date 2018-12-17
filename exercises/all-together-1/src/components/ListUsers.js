@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import ListUserItem from "./ListUsersItem";
 
 class ListUsers extends React.Component {
   state = {
@@ -13,7 +15,10 @@ class ListUsers extends React.Component {
     return (
       <React.Fragment>
         <h2 className="users">Users</h2>
-        <button onClick={this.toogleGames}>
+        <button
+          onClick={this.toogleGames}
+          disabled={this.props.users.length === 0}
+        >
           {this.state.show ? "Hide" : "Show"} total games played
         </button>
         <table>
@@ -25,10 +30,11 @@ class ListUsers extends React.Component {
           </thead>
           <tbody>
             {this.props.users.map(item => (
-              <tr key={item.userName}>
-                <td>{item.userName}</td>
-                <td>Played {this.state.show ? item.totalGames : "*"} games</td>
-              </tr>
+              <ListUserItem
+                key={item.userName}
+                user={item}
+                showData={this.state.show}
+              />
             ))}
           </tbody>
         </table>
@@ -36,5 +42,9 @@ class ListUsers extends React.Component {
     );
   }
 }
+
+ListUsers.propTypes = {
+  users: PropTypes.array.isRequired
+};
 
 export default ListUsers;

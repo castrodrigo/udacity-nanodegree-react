@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class AddUser extends React.Component {
   initialUserState = {
@@ -84,5 +85,10 @@ class AddUser extends React.Component {
     );
   }
 }
+
+AddUser.proptypes = {
+  appendUser: PropTypes.func.isRequired,
+  isUserNameAvailable: PropTypes.bool.isRequired
+};
 
 export default AddUser;
