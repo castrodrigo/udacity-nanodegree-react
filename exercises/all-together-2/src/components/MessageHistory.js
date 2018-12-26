@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const MessageHistory = ({ messages, user }) => (
   <ul className="message-list">
@@ -14,5 +15,10 @@ const MessageHistory = ({ messages, user }) => (
     ))}
   </ul>
 );
+
+MessageHistory.propTypes = {
+  messages: PropTypes.array.isRequired,
+  user: PropTypes.string.isRequired
+};
 
 export default MessageHistory;
