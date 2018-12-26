@@ -13,6 +13,12 @@ class App extends Component {
     ]
   };
 
+  submitMessage = (username, text) => {
+    this.setState(prevState => ({
+      messages: [...prevState.messages, { username, text }]
+    }));
+  };
+
   render() {
     return (
       <div className="App">
@@ -26,6 +32,7 @@ class App extends Component {
               key={user.username}
               user={user.username}
               messages={this.state.messages}
+              submitMessage={this.submitMessage}
             />
           ))}
         </div>
