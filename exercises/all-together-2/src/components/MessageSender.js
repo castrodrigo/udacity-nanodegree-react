@@ -10,6 +10,8 @@ class MessageSender extends React.Component {
     event.preventDefault();
     const { submitMessage, user } = this.props;
     submitMessage(user, this.state.message);
+
+    this.setState({ message: "" });
   };
 
   onChange = message => {
@@ -28,6 +30,7 @@ class MessageSender extends React.Component {
             type="text"
             className="form-control"
             placeholder="Enter your message..."
+            value={this.state.message}
             onChange={event => this.onChange(event.target.value)}
           />
           <div className="input-group-append">
