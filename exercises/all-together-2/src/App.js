@@ -6,11 +6,7 @@ import "./App.css";
 class App extends Component {
   state = {
     users: [{ username: "Amy" }, { username: "John" }],
-    messages: [
-      { username: "Amy", text: "Hi, Jon!" },
-      { username: "Amy", text: "How are you?" },
-      { username: "John", text: "Hi, Amy! Good, you?" }
-    ]
+    messages: []
   };
 
   submitMessage = (username, text) => {
