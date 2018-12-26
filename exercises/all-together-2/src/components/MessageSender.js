@@ -1,22 +1,29 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class MessageSender extends React.Component {
   state = {
-    value: ""
+    message: ""
   };
 
-  onChange = value => {
-    this.setState({ value });
+  onSubmit = event => {
+    event.preventDefault();
+    const { submitMessage, user } = this.props;
+    submitMessage(user, this.state.message);
+  };
+
+  onChange = message => {
+    this.setState({ message });
   };
 
   isDisabled = () => {
-    return this.state.value.length === 0;
+    return this.state.message.length === 0;
   };
 
   render() {
     return (
       <div>
-        <form className="input-group">
+        <form className="input-group" onSubmit={this.onSubmit}>
           <input
             type="text"
             className="form-control"
@@ -33,5 +40,10 @@ class MessageSender extends React.Component {
     );
   }
 }
+
+MessageSender.propTypes = {
+  user: PropTypes.string.isRequired,
+  submitMessage: PropTypes.func.isRequired
+};
 
 export default MessageSender;
